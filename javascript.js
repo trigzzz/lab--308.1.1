@@ -80,3 +80,21 @@ for (let i = 0; i < speeds.length; i++) {
   
 }
 console.log('---------------------------');
+
+// PART 3
+
+let optimalSpeed = 0;
+
+for (let i = 0; i < speeds.length; i++) {
+  const speed = speeds[i];
+  const efficiency = efficiencies[i];
+
+  const totalFuelNeeded = calculateTotalFuel(speed, efficiency);
+  const budgetEnough = isBudgetEnough(totalFuelNeeded);
+
+  if (budgetEnough && (optimalSpeed === 0 || totalFuelNeeded < calculateTotalFuel(optimalSpeed, efficiencies[speeds.indexOf(optimalSpeed)]))) {
+    optimalSpeed = speed;
+  }
+}
+
+console.log(`Optimal speed within budget: ${optimalSpeed} mph`);
