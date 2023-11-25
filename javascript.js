@@ -39,3 +39,44 @@ const isValid = isSum50 && isTwoOdd && !isUnderOrEqualTo25 && isUnique;
 // Logged results
 console.log(`Final Result: ${isValid}`);
 console.log('---------------------------');
+
+// PART 2
+
+// Constants for the road trip scenario
+const totalDistance = 1500; // distance of the road trip
+const fuelBudget = 175; // fuel budget
+const costPerGallon = 3; // gas price
+const speeds = [55, 60, 75]; // miles per hour (speed)
+const efficiencies = [30, 28, 23]; // miles per gallon
+
+// Function to calculate fuel needed for the entire trip
+function calculateTotalFuel(speed, efficiency) {
+  return totalDistance / efficiency;
+}
+
+// Function to calculate trip duration
+function calculateDuration(speed) {
+  return totalDistance / speed;
+}
+
+// Function to check if budget is enough
+function isBudgetEnough(totalFuelNeeded) {
+  return totalFuelNeeded * costPerGallon <= fuelBudget;
+}
+
+// Calculations and log results for each speed
+for (let i = 0; i < speeds.length; i++) {
+  const speed = speeds[i];
+  const efficiency = efficiencies[i];
+
+  const totalFuelNeeded = calculateTotalFuel(speed, efficiency);
+  const tripDuration = calculateDuration(speed);
+  const budgetEnough = isBudgetEnough(totalFuelNeeded);
+
+  console.log(`Results for traveling at ${speed} mph:`);
+  console.log(`- Total gallons of fuel needed for the entire trip: ${totalFuelNeeded.toFixed(2)}`);
+  console.log(`- Trip duration: ${tripDuration.toFixed(2)} hours`);
+  console.log(`- Will budget cover fuel expense? ${budgetEnough ? 'Yes' : 'No'}`);
+  
+}
+console.log('---------------------------');
